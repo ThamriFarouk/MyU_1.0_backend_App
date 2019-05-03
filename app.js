@@ -10,15 +10,13 @@ const orderRoutes = require('./api/routes/orders');
 mongoose.connect('mongodb+srv://Farouk:' + process.env.MONGO_ATLAS_PW + '@cluster0-l7ky7.azure.mongodb.net/test?retryWrites=true',
     {
         useNewUrlParser: true
-    });
+    }
+);
+mongoose.Promise = global.Promise;
 
-// app.use((req, res, next) => {
-//     res.status(200).json({
-//         message: 'it works'
-//     });
-// });
 
 app.use(morgan('dev'));
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
