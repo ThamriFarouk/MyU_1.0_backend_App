@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
+const Product = require('../models/product');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -28,8 +29,6 @@ const upload = multer({
     },
     fileFilter: fileFilter
 });
-
-const Product = require('../models/product');
 
 router.get('/', (req, res, next) => {
     Product.find()
@@ -108,7 +107,7 @@ router.get('/:productId', (req, res, next) => {
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_PRODUCTS => URL_UNDER',
-                        url: 'http://localhost:3000/products'
+                        url: 'http://localhost:4000/products'
                     }
                 });
             } else {
