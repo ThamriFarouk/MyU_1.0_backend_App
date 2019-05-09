@@ -17,11 +17,11 @@ exports.Add_Class = (req, res, next) => {
                 createdclasse: {
                     name: result.name,
                     departementName: result.departementName,
-                    _id: result.id,
-                    request: {
-                        type: 'GET',
-                        url: 'http://localhost:4000/classes' + result._id
-                    }
+                    _id: result.id
+                },
+                request: {
+                    type: 'GET',
+                    url: 'http://localhost:4000/classes' + result._id
                 }
             })
         })

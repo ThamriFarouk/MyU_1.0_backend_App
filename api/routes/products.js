@@ -31,10 +31,10 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-router.get('/', checkAuth, productController.get_All_Products);
-router.post('/', checkAuth, upload.single('productImage'), productController.Add_Product);
-router.get('/:productId', checkAuth, productController.get_Specific_Product);
-router.patch('/:productId', checkAuth, productController.Update_Product);
-router.delete('/:productId', checkAuth, productController.Delete_Product);
+router.get('/', productController.get_All_Products);
+router.post('/', upload.single('productImage'), productController.Add_Product);
+router.get('/:productId', productController.get_Specific_Product);
+router.patch('/:productId', productController.Update_Product);
+router.delete('/:productId', productController.Delete_Product);
 
 module.exports = router;

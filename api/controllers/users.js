@@ -3,8 +3,60 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// Login woth a User
+// add a User/ signUp
+exports.SignUp = (req, res, next) => {
+    User.find({ login: req.body.login })
+        .exec()
+        .then(user => {
+            if (user.length >= 1) {
+                return res.status(409).json({
+                    message: 'Login already exists'
+                })
+            } else {
+                bcrypt.hash(req.body.password, 5, (err, hash) => {
+                    if (err) {
+                        return res.status(500).json({
+                            error: err
+                        });
+                    } else {
+                        const user = new User({
+                            _id: new mongoose.Types.ObjectId(),
+                            login: req.body.login,
+                            password: hash,
+                            type: req.body.type
+                        });
+                        user.save()
+                            .then(result => {
+                                console.log(result);
+                                res.status(201).json({
+                                    message: 'Created User Successfully!',
+                                    createdUser: {
+                                        login: result.login,
+                                        password: result.password,
+                                        type: result.type,
+                                        _id: result.id
+                                    },
+                                    request: {
+                                        type: 'GET',
+                                        url: 'http://localhost:4000/users' + result._id
+                                    }
+                                })
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                res.status(500).json({
+                                    error: err
+                                })
+                            });
+                    }
+                });
+            }
+        })
+}
+
+// Login with a User
 exports.Login = (req, res, next) => {
+    console.log(req.body);
     User.find({ login: req.body.login })
         .exec()
         .then(user => {
@@ -32,6 +84,8 @@ exports.Login = (req, res, next) => {
                         );
                         return res.status(200).json({
                             message: 'Auth Successful',
+                            type: user[0].type,
+                            user_id: user[0]._id,
                             token: token
                         })
                     }
@@ -46,59 +100,11 @@ exports.Login = (req, res, next) => {
         });
 }
 
-// add a User
-exports.SignUp = (req, res, next) => {
-    User.find({ login: req.body.login })
-        .exec()
-        .then(user => {
-            if (user.length >= 1) {
-                return res.status(409).json({
-                    message: 'Login already exists'
-                })
-            } else {
-                bcrypt.hash(req.body.password, 5, (err, hash) => {
-                    if (err) {
-                        return res.status(500).json({
-                            error: err
-                        });
-                    } else {
-                        const user = new User({
-                            _id: new mongoose.Types.ObjectId(),
-                            login: req.body.login,
-                            password: hash,
-                        });
-                        user.save()
-                            .then(result => {
-                                console.log(result);
-                                res.status(201).json({
-                                    message: 'Created User Successfully!',
-                                    createdUser: {
-                                        login: result.login,
-                                        password: result.password,
-                                        _id: result.id,
-                                        request: {
-                                            type: 'GET',
-                                            url: 'http://localhost:4000/users' + result._id
-                                        }
-                                    }
-                                })
-                            })
-                            .catch(err => {
-                                console.log(err);
-                                res.status(500).json({
-                                    error: err
-                                })
-                            });
-                    }
-                });
-            }
-        })
-}
 
 // get all Users
 exports.Get_All_Users = (req, res, next) => {
     User.find()
-        .select('login password _id lastConnexion')
+        .select('login password _id lastConnexion type')
         .exec()
         .then(docs => {
             const response = {
@@ -107,6 +113,7 @@ exports.Get_All_Users = (req, res, next) => {
                     return {
                         login: doc.login,
                         password: doc.password,
+                        type: doc.type,
                         lastConnexion: doc.lastConnexion,
                         _id: doc._id,
                         request: {

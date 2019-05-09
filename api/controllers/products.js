@@ -19,11 +19,11 @@ exports.Add_Product = (req, res, next) => {
                 createdProduct: {
                     name: result.name,
                     price: result.price,
-                    _id: result.id,
-                    request: {
-                        type: 'GET',
-                        url: 'http://localhost:4000/products' + result._id
-                    }
+                    _id: result.id
+                },
+                request: {
+                    type: 'GET',
+                    url: 'http://localhost:4000/products' + result._id
                 }
             })
         })

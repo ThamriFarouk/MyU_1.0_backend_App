@@ -21,6 +21,37 @@ const studentSchema = mongoose.Schema({
         required: true
     },
 
+    birthDate: {
+        type: String,
+        required: true
+    },
+    birthPlace: {
+        type: String,
+        required: true
+    },
+    Nationality: {
+        type: String,
+        required: true
+    },
+    CIN: {
+        type: String,
+        required: true
+    },
+    PassportNumber: {
+        type: String,
+        required: true
+    },
+    SchoolName: {
+        type: String,
+        required: true
+    },
+    DepartmentName: {
+        type: String,
+        required: true
+    }
+
+
+
 });
 
 module.exports = mongoose.model('Student', studentSchema);

@@ -4,10 +4,12 @@ const checkAuth = require('../middleware/check-auth');
 const studentController = require('../controllers/students');
 
 
-router.post('/', checkAuth, studentController.Add_Student);
-router.get('/', checkAuth, studentController.get_All_Students);
-router.get('/:studentId', checkAuth, studentController.get_Specific_Student);
-router.patch('/:studentId', checkAuth, studentController.Update_Student);
-router.delete('/:studentId', checkAuth, studentController.Delete_Student);
+router.post('/', studentController.Add_Student);
+router.get('/', studentController.get_All_Students);
+router.get('/:studentId', studentController.get_Specific_Student);
+router.patch('/:studentId', studentController.Update_Student);
+router.delete('/:studentId', studentController.Delete_Student);
+router.get('/byUser/:userId', studentController.get_Student_By_User);
+
 
 module.exports = router;
