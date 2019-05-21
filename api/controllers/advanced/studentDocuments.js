@@ -21,7 +21,8 @@ exports.Add_StudentDocument = (req, res, next) => {
         publisher: req.body.publisher,
         date: date,
         time: time,
-        documentImage: req.file.path
+        documentImage: req.file.path,
+        link: req.body.link
     });
     studentDocument
         .save()
@@ -38,7 +39,8 @@ exports.Add_StudentDocument = (req, res, next) => {
                     publisher: Document.publisher,
                     date: Document.date,
                     time: Document.time,
-                    documentImage: Document.documentImage
+                    documentImage: Document.documentImage,
+                    link: Document.link
                 },
                 request: {
                     type: 'GET',
@@ -52,7 +54,7 @@ exports.Add_StudentDocument = (req, res, next) => {
 // get all studentDocuments
 exports.Get_All_StudentDocuments = (req, res, next) => {
     StudentDocument.find()
-        .select('_id title subtitle content categorie publisher date time documentImage')
+        .select('_id title subtitle content categorie publisher date time documentImage link')
         .exec()
         .then(docs => {
             const response = {
@@ -69,6 +71,7 @@ exports.Get_All_StudentDocuments = (req, res, next) => {
                         date: doc.date,
                         time: doc.time,
                         documentImage: doc.documentImage,
+                        link: doc.link,
                         request: {
                             type: 'GET',
                             url: 'http://localhost:4000/studentDocuments/' + doc._id
@@ -96,7 +99,7 @@ exports.Get_All_StudentDocuments = (req, res, next) => {
 exports.Get_Specific_StudentDocument = (req, res, next) => {
     const id = req.params.studentDocumentId;
     StudentDocument.findById(id)
-        .select('_id title subtitle content categorie publisher date time documentImage')
+        .select('_id title subtitle content categorie publisher date time documentImage link')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);
