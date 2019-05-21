@@ -30,10 +30,12 @@ mongoose.Promise = global.Promise;
 
 
 app.use(morgan('dev'));
+
 app.use('/uploads', express.static('uploads'));
 app.use('/uploads/galerie', express.static('uploads'));
 app.use('/uploads/documents', express.static('uploads'));
 app.use('/uploads/actus', express.static('uploads'));
+app.use('/uploads/profile', express.static('uploads'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

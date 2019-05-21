@@ -43,7 +43,9 @@ exports.Add_Student = (req, res, next) => {
                             CIN: req.body.CIN,
                             PassportNumber: req.body.PassportNumber,
                             SchoolName: req.body.SchoolName,
-                            DepartmentName: req.body.DepartmentName
+                            DepartmentName: req.body.DepartmentName,
+                            email: req.body.email,
+                            photo: req.file.photo
                         });
                         return student.save();
                     })
@@ -63,7 +65,9 @@ exports.Add_Student = (req, res, next) => {
                                 CIN: result.CIN,
                                 PassportNumber: result.PassportNumber,
                                 SchoolName: result.SchoolName,
-                                DepartmentName: result.DepartmentName
+                                DepartmentName: result.DepartmentName,
+                                email: result.email,
+                                photo: result.photo
                             },
                             requests: [
                                 {
@@ -94,7 +98,7 @@ exports.Add_Student = (req, res, next) => {
 //get all Students
 exports.get_All_Students = (req, res, next) => {
     Student.find()
-        .select('_id account firstName lastName classId birthDate birthPlace Nationality CIN PassportNumber SchoolName DepartmentName')
+        .select('_id account firstName lastName class birthDate birthPlace Nationality CIN PassportNumber SchoolName DepartmentName email photo')
         .exec()
         .then(docs => {
             const response = {
@@ -105,7 +109,7 @@ exports.get_All_Students = (req, res, next) => {
                         account: doc.account,
                         firstName: doc.firstName,
                         lastName: doc.lastName,
-                        classId: doc.classId,
+                        class: doc.classId,
                         birthDate: doc.birthDate,
                         birthPlace: doc.birthPlace,
                         Nationality: doc.Nationality,
@@ -113,6 +117,8 @@ exports.get_All_Students = (req, res, next) => {
                         PassportNumber: doc.PassportNumber,
                         SchoolName: doc.SchoolName,
                         DepartmentName: doc.DepartmentName,
+                        email: doc.email,
+                        photo: doc.photo,
                         request: {
                             type: 'GET',
                             url: 'http://localhost:4000/students/' + doc._id
@@ -140,7 +146,7 @@ exports.get_All_Students = (req, res, next) => {
 exports.get_Specific_Student = (req, res, next) => {
     const id = req.params.studentId;
     Student.findById(id)
-        .select('firstName lastName _id classId')
+        .select('_id account firstName lastName class birthDate birthPlace Nationality CIN PassportNumber SchoolName DepartmentName email photo')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);
@@ -220,7 +226,7 @@ exports.Delete_Student = (req, res, next) => {
 exports.get_Student_By_User = (req, res, next) => {
     const id = req.params.userId;
     Student.findOne({ account: id })
-        .select('_id account firstName lastName classId birthDate birthPlace Nationality CIN PassportNumber SchoolName DepartmentName')
+        .select('_id account firstName lastName class birthDate birthPlace Nationality CIN PassportNumber SchoolName DepartmentName email photo')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);

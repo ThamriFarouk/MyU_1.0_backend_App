@@ -143,3 +143,30 @@ exports.Delete_Class = (req, res, next) => {
             });
         });
 }
+
+//get specific class by student
+exports.Get_Specific_Class = (req, res, next) => {
+    const id = req.params.classeId;
+    Class.findById(id)
+        .select('name departementName _id ')
+        .exec()
+        .then(doc => {
+            console.log('From DataBase:', doc);
+            if (doc) {
+                res.status(200).json({
+                    classe: doc,
+                    request: {
+                        type: 'GET',
+                        description: 'GET_ALL_classe => URL_UNDER',
+                        url: 'http://localhost:4000/classes'
+                    }
+                });
+            } else {
+                res.status(404).json({ message: 'not valid entry for classe id' });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ error: err });
+        });
+}

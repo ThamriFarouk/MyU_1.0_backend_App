@@ -149,7 +149,7 @@ exports.get_Scpecific_User = (req, res, next) => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    product: doc,
+                    user: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_USER => URL_UNDER',
@@ -203,7 +203,7 @@ exports.Delete_User = (req, res, next) => {
                 message: 'User deleted!',
                 request: {
                     type: 'POST',
-                    url: 'http://localhost:4000/products/',
+                    url: 'http://localhost:4000/users/',
                     body: {
                         login: 'String',
                         password: 'String'
