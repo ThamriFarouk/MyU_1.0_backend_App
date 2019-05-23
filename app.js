@@ -6,17 +6,22 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/tutorial/routes/products');
 const orderRoutes = require('./api/tutorial/routes/orders');
-const userRoutes = require('./api/routes/users');
-const studentRoutes = require('./api/routes/students');
-const classRoutes = require('./api/routes/classes');
-const studentResultRoutes = require('./api/routes/advanced/studentResults');
-const studentEvalRoutes = require('./api/routes/advanced/studentEvals');
-const studentAttendanceRoutes = require('./api/routes/advanced/studentAttendances');
-const studentInternshipRoutes = require('./api/routes/advanced/studentInternships');
-const studentListTeacherRoutes = require('./api/routes/advanced/studentListTeachers');
-const studentDocumentRoutes = require('./api/routes/advanced/studentDocuments');
-const schoolPhotoRoutes = require('./api/routes/advanced/schoolPhotos');
-const studentActuRoutes = require('./api/routes/advanced/studentActus');
+const userRoutes = require('./api/routes/commonRoutes/users');
+const studentRoutes = require('./api/routes/commonRoutes/students');
+const classRoutes = require('./api/routes/commonRoutes/classes');
+const studentResultRoutes = require('./api/routes/studentRoutes/studentResults');
+const studentEvalRoutes = require('./api/routes/studentRoutes/studentEvals');
+const studentAttendanceRoutes = require('./api/routes/studentRoutes/studentAttendances');
+const studentInternshipRoutes = require('./api/routes/studentRoutes/studentInternships');
+const studentListTeacherRoutes = require('./api/routes/studentRoutes/studentListTeachers');
+const studentDocumentRoutes = require('./api/routes/studentRoutes/studentDocuments');
+const schoolPhotoRoutes = require('./api/routes/studentRoutes/schoolPhotos');
+const classCalendarRoutes = require('./api/routes/calendarRoutes/classCalendars');
+const examCalendarRoutes = require('./api/routes/calendarRoutes/examCalendars');
+const profExamCalendarRoutes = require('./api/routes/calendarRoutes/profExamCalendars');
+const schoolCalendarRoutes = require('./api/routes/calendarRoutes/schoolCalendars');
+const profCalendarRoutes = require('./api/routes/calendarRoutes/profCalendars');
+
 
 
 
@@ -64,10 +69,11 @@ app.use('/studentInternships', studentInternshipRoutes);
 app.use('/studentListTeachers', studentListTeacherRoutes);
 app.use('/studentDocuments', studentDocumentRoutes);
 app.use('/schoolPhotos', schoolPhotoRoutes);
-app.use('/studentActus', studentActuRoutes);
-
-
-
+app.use('/classCalendars', classCalendarRoutes);
+app.use('/examCalendars', examCalendarRoutes);
+app.use('/profExamCalendars', profExamCalendarRoutes);
+app.use('/schoolCalendars', schoolCalendarRoutes);
+// app.use('/profCalendars', profCalendarRoutes);
 
 
 
