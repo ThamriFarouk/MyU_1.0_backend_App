@@ -1,0 +1,128 @@
+[
+    {
+        "class": "5ccf7c0a0d7e393a44588697",
+        "name": "calendrier Semesetre 1",
+        "schoolYear": "2018-2019",
+        "seances": [
+            {
+                "date": "27/05/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Biollogie végétale",
+                "startTime": "8:30",
+                "endTime": "10:00"
+            },
+            {
+                "date": "27/05/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Physique nucléaire",
+                "startTime": "10:30",
+                "endTime": "12:00"
+            },
+            {
+                "date": "27/05/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Biollogie animale",
+                "startTime": "14:30",
+                "endTime": "16:00"
+            },
+            {
+                "date": "28/05/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Chimie organique",
+                "startTime": "8:30",
+                "endTime": "12:00"
+            },
+            {
+                "date": "28/05/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Biollogie animale",
+                "startTime": "15:30",
+                "endTime": "17:30"
+            },
+            {
+                "date": "29/05/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Bacteriologie",
+                "startTime": "8:30",
+                "endTime": "10:00"
+            },
+            {
+                "date": "29/05/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Géologie ",
+                "startTime": "13:30",
+                "endTime": "17:00"
+            }
+        ]
+    },
+    {
+        "class": "5ccf7c0a0d7e393a44588697",
+        "name": "calendrier Semesetre 1",
+        "schoolYear": "2018-2019",
+        "seances": [
+            {
+                "date": "03/06/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Biollogie végétale",
+                "startTime": "8:30",
+                "endTime": "10:00"
+            },
+            {
+                "date": "03/06/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Physique nucléaire",
+                "startTime": "10:30",
+                "endTime": "12:00"
+            },
+            {
+                "date": "03/06/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Biollogie animale",
+                "startTime": "14:30",
+                "endTime": "16:00"
+            },
+            {
+                "date": "04/06/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Chimie organique",
+                "startTime": "8:30",
+                "endTime": "12:00"
+            },
+            {
+                "date": "04/06/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Biollogie animale",
+                "startTime": "15:30",
+                "endTime": "17:30"
+            },
+            {
+                "date": "05/06/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Bacteriologie",
+                "startTime": "8:30",
+                "endTime": "10:00"
+            },
+            {
+                "date": "05/06/2019",
+                "classe": "5ccf7c0a0d7e393a44588697",
+                "professor": "Sami Ben Sami",
+                "course": "Géologie ",
+                "startTime": "13:30",
+                "endTime": "17:00"
+            }
+        ]
+    }
+]

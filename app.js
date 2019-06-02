@@ -21,6 +21,12 @@ const examCalendarRoutes = require('./api/routes/calendarRoutes/examCalendars');
 const profExamCalendarRoutes = require('./api/routes/calendarRoutes/profExamCalendars');
 const schoolCalendarRoutes = require('./api/routes/calendarRoutes/schoolCalendars');
 const profCalendarRoutes = require('./api/routes/calendarRoutes/profCalendars');
+const classFeedRoutes = require('./api/routes/feedRoutes/classFeeds');
+const profFeedRoutes = require('./api/routes/feedRoutes/profFeeds');
+const schoolFeedRoutes = require('./api/routes/feedRoutes/schoolFeeds');
+const studentFeedRoutes = require('./api/routes/feedRoutes/studentFeeds');
+const profRoutes = require('./api/routes/commonRoutes/profs');
+
 
 
 
@@ -39,7 +45,7 @@ app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 app.use('/uploads/galerie', express.static('uploads'));
 app.use('/uploads/documents', express.static('uploads'));
-app.use('/uploads/actus', express.static('uploads'));
+app.use('/uploads/feeds/classFeeds', express.static('uploads'));
 app.use('/uploads/profile', express.static('uploads'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -73,9 +79,12 @@ app.use('/classCalendars', classCalendarRoutes);
 app.use('/examCalendars', examCalendarRoutes);
 app.use('/profExamCalendars', profExamCalendarRoutes);
 app.use('/schoolCalendars', schoolCalendarRoutes);
-// app.use('/profCalendars', profCalendarRoutes);
-
-
+app.use('/profCalendars', profCalendarRoutes);
+app.use('/classFeeds', classFeedRoutes);
+app.use('/profFeeds', profFeedRoutes);
+app.use('/schoolFeeds', schoolFeedRoutes);
+app.use('/studentFeeds', studentFeedRoutes);
+app.use('/profs', profRoutes);
 
 
 

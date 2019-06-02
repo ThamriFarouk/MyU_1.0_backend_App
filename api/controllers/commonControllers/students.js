@@ -9,6 +9,8 @@ exports.Add_Student = (req, res, next) => {
     Student.find({ CIN: req.body.CIN })
         .exec()
         .then(student => {
+            console.log(student);
+            console.log(req.body.CIN);
             if (student.length >= 1) {
                 return res.status(409).json({
                     message: 'CIN of student already exists'
@@ -27,7 +29,7 @@ exports.Add_Student = (req, res, next) => {
                                 if (!user) {
                                     return res.status(404).json({
                                         message: 'user not Found!',
-                                        reason: 'Cant find a user with this id.' + req.body.userId
+                                        reason: 'Cant find a user with this id: ' + req.body.userId
                                     });
                                 }
                             })
@@ -45,7 +47,7 @@ exports.Add_Student = (req, res, next) => {
                             SchoolName: req.body.SchoolName,
                             DepartmentName: req.body.DepartmentName,
                             email: req.body.email,
-                            photo: req.file.photo
+                            photo: 'req.file.photo'
                         });
                         return student.save();
                     })

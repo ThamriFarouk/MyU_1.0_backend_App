@@ -8,7 +8,7 @@ exports.Add_ExamCalendar = (req, res, next) => {
         name: req.body.name,
         class: req.body.class,
         schoolYear: req.body.schoolYear,
-        seances: req.body.seances,
+        exams: req.body.exams,
     });
     examCalendar
         .save()
@@ -21,7 +21,7 @@ exports.Add_ExamCalendar = (req, res, next) => {
                     name: result.name,
                     class: result.class,
                     schoolYear: result.schoolYear,
-                    seances: result.seances,
+                    exams: result.exams,
                 },
                 request: {
                     type: 'GET',
@@ -35,18 +35,18 @@ exports.Add_ExamCalendar = (req, res, next) => {
 // get all ExamCalendars
 exports.Get_All_ExamCalendars = (req, res, next) => {
     ExamCalendar.find()
-        .select('_id name class schoolYear seances')
+        .select('_id name class schoolYear exams')
         .exec()
         .then(docs => {
             const response = {
                 count: docs.length,
-                ExamCalendares: docs.map(doc => {
+                ExamCalendars: docs.map(doc => {
                     return {
                         _id: doc.id,
                         name: doc.name,
                         class: doc.class,
                         schoolYear: doc.schoolYear,
-                        seances: doc.seances,
+                        exams: doc.exams,
                         request: {
                             type: 'GET',
                             url: 'http://localhost:4000/examCalendars/' + doc._id
@@ -74,13 +74,13 @@ exports.Get_All_ExamCalendars = (req, res, next) => {
 exports.Get_Specific_ExamCalendar = (req, res, next) => {
     const id = req.params.examCalendarId;
     ExamCalendar.findById(id)
-        .select('_id name class schoolYear seances')
+        .select('_id name class schoolYear exams')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ExamCalendare: doc,
+                    ExamCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ExamCalendar => URL_UNDER',
@@ -152,15 +152,15 @@ exports.Delete_ExamCalendar = (req, res, next) => {
 
 //get specific ExamCalendar by class
 exports.Get_Specific_ExamCalendar_By_Class = (req, res, next) => {
-    const id = req.params.classID;
+    const id = req.params.classId;
     ExamCalendar.findOne({ class: id })
-        .select('_id name class schoolYear seances')
+        .select('_id name class schoolYear exams')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ExamCalendare: doc,
+                    ExamCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ExamCalendar => URL_UNDER',
@@ -179,16 +179,16 @@ exports.Get_Specific_ExamCalendar_By_Class = (req, res, next) => {
 
 //get specific ExamCalendar by schoolYear and class
 exports.Get_Specific_ExamCalendar_By_Class_And_SchoolYear = (req, res, next) => {
-    const id = req.params.examCalendarId;
+    const id = req.params.classId;
     const schoolY = req.params.schoolYear;
     ExamCalendar.find({ class: id, schoolYear: schoolY })
-        .select('_id name class schoolYear seances')
+        .select('_id name class schoolYear exams')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ExamCalendare: doc,
+                    ExamCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ExamCalendar => URL_UNDER',
@@ -203,4 +203,11 @@ exports.Get_Specific_ExamCalendar_By_Class_And_SchoolYear = (req, res, next) => 
             console.log(err);
             res.status(500).json({ error: err });
         });
+}
+
+function formatSchoolYearFromBody(schoolyear) {
+    // sy = schoolyear;
+    // sy.replace('-', '/');
+    // console.log(sy);
+    return schoolyear.replace('-', '/');
 }

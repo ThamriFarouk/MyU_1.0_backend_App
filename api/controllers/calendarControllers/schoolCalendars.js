@@ -40,7 +40,7 @@ exports.Get_All_SchoolCalendars = (req, res, next) => {
         .then(docs => {
             const response = {
                 count: docs.length,
-                SchoolCalendares: docs.map(doc => {
+                SchoolCalendars: docs.map(doc => {
                     return {
                         _id: doc.id,
                         name: doc.name,
@@ -80,7 +80,7 @@ exports.Get_Specific_SchoolCalendar = (req, res, next) => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    SchoolCalendare: doc,
+                    SchoolCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_SchoolCalendare => URL_UNDER',
@@ -187,7 +187,7 @@ exports.Get_Specific_SchoolCalendar_By_School = (req, res, next) => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    SchoolCalendare: doc,
+                    SchoolCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_SchoolCalendar => URL_UNDER',
@@ -215,7 +215,7 @@ exports.Get_Specific_SchoolCalendar_By_School_And_SchoolYear = (req, res, next) 
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    SchoolCalendare: doc,
+                    SchoolCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_SchoolCalendar => URL_UNDER',
@@ -230,4 +230,11 @@ exports.Get_Specific_SchoolCalendar_By_School_And_SchoolYear = (req, res, next) 
             console.log(err);
             res.status(500).json({ error: err });
         });
+}
+
+function formatSchoolYearFromBody(schoolyear) {
+    // sy = schoolyear;
+    // sy.replace('-', '/');
+    // console.log(sy);
+    return schoolyear.replace('-', '/');
 }

@@ -40,7 +40,7 @@ exports.Get_All_ClassCalendars = (req, res, next) => {
         .then(docs => {
             const response = {
                 count: docs.length,
-                ClassCalendares: docs.map(doc => {
+                ClassCalendars: docs.map(doc => {
                     return {
                         _id: doc.id,
                         name: doc.name,
@@ -80,7 +80,7 @@ exports.Get_Specific_ClassCalendar = (req, res, next) => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ClassCalendare: doc,
+                    ClassCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ClassCalendar => URL_UNDER',
@@ -160,7 +160,7 @@ exports.Get_Specific_ClassCalendar_By_Class = (req, res, next) => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ClassCalendare: doc,
+                    ClassCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ClassCalendar => URL_UNDER',
@@ -179,7 +179,7 @@ exports.Get_Specific_ClassCalendar_By_Class = (req, res, next) => {
 
 //get specific ClassCalendar by schoolYear and class
 exports.Get_Specific_ClassCalendar_By_Class_And_SchoolYear = (req, res, next) => {
-    const id = req.params.ClassId;
+    const id = req.params.classId;
     const schoolY = req.params.schoolYear;
     ClassCalendar.find({ class: id, schoolYear: schoolY })
         .select('_id name class schoolYear seances')
@@ -188,7 +188,7 @@ exports.Get_Specific_ClassCalendar_By_Class_And_SchoolYear = (req, res, next) =>
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ClassCalendare: doc,
+                    ClassCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ClassCalendar => URL_UNDER',
@@ -203,4 +203,11 @@ exports.Get_Specific_ClassCalendar_By_Class_And_SchoolYear = (req, res, next) =>
             console.log(err);
             res.status(500).json({ error: err });
         });
+}
+
+function formatSchoolYearFromBody(schoolyear) {
+    // sy = schoolyear;
+    // sy.replace('-', '/');
+    // console.log(sy);
+    return schoolyear.replace('-', '/');
 }

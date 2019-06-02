@@ -40,7 +40,7 @@ exports.Get_All_ProfCalendars = (req, res, next) => {
         .then(docs => {
             const response = {
                 count: docs.length,
-                ProfCalendares: docs.map(doc => {
+                ProfCalendars: docs.map(doc => {
                     return {
                         _id: doc.id,
                         name: doc.name,
@@ -80,7 +80,7 @@ exports.Get_Specific_ProfCalendar = (req, res, next) => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ProfCalendare: doc,
+                    ProfCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ProfCalendar => URL_UNDER',
@@ -160,7 +160,7 @@ exports.Get_Specific_ProfCalendar_By_Prof = (req, res, next) => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ProfCalendare: doc,
+                    ProfCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ProfCalendar => URL_UNDER',
@@ -188,7 +188,7 @@ exports.Get_Specific_ProfCalendar_By_Prof_And_SchoolYear = (req, res, next) => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ProfCalendare: doc,
+                    ProfCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ProfCalendar => URL_UNDER',
@@ -203,4 +203,11 @@ exports.Get_Specific_ProfCalendar_By_Prof_And_SchoolYear = (req, res, next) => {
             console.log(err);
             res.status(500).json({ error: err });
         });
+}
+
+function formatSchoolYearFromBody(schoolyear) {
+    // sy = schoolyear;
+    // sy.replace('-', '/');
+    // console.log(sy);
+    return schoolyear.replace('-', '/');
 }

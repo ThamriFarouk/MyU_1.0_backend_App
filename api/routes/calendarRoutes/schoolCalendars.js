@@ -5,9 +5,9 @@ const schoolCalendarsController = require('/Users/HP/Documents/_SI3/PFE Universi
 
 router.post('/', schoolCalendarsController.Add_SchoolCalendar);
 router.get('/', schoolCalendarsController.Get_All_SchoolCalendars);
-router.get('/:SchoolCalendarId', schoolCalendarsController.Get_Specific_SchoolCalendar);
-router.patch('/:SchoolCalendarId', schoolCalendarsController.Update_SchoolCalendar);
-router.delete('/:SchoolCalendarId', schoolCalendarsController.Delete_SchoolCalendar);
+router.get('/:schoolCalendarId', schoolCalendarsController.Get_Specific_SchoolCalendar);
+router.patch('/:schoolCalendarId', schoolCalendarsController.Update_SchoolCalendar);
+router.delete('/:schoolCalendarId', schoolCalendarsController.Delete_SchoolCalendar);
 router.get('/bySchool/:school', schoolCalendarsController.Get_Specific_SchoolCalendar_By_School);
 router.get('/bySchool&SchoolYear/:school/:schoolYear', schoolCalendarsController.Get_Specific_SchoolCalendar_By_School_And_SchoolYear);
 

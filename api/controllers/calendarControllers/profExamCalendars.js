@@ -8,7 +8,7 @@ exports.Add_ProfExamCalendar = (req, res, next) => {
         name: req.body.name,
         prof: req.body.prof,
         schoolYear: req.body.schoolYear,
-        seances: req.body.seances,
+        exams: req.body.exams,
     });
     profExamCalendar
         .save()
@@ -21,7 +21,7 @@ exports.Add_ProfExamCalendar = (req, res, next) => {
                     name: result.name,
                     prof: result.prof,
                     schoolYear: result.schoolYear,
-                    seances: result.seances,
+                    exams: result.exams,
                 },
                 request: {
                     type: 'GET',
@@ -35,18 +35,18 @@ exports.Add_ProfExamCalendar = (req, res, next) => {
 // get all ProfExamCalendars
 exports.Get_All_ProfExamCalendars = (req, res, next) => {
     ProfExamCalendar.find()
-        .select('_id name prof schoolYear seances')
+        .select('_id name prof schoolYear exams')
         .exec()
         .then(docs => {
             const response = {
                 count: docs.length,
-                ProfExamCalendares: docs.map(doc => {
+                ProfExamCalendars: docs.map(doc => {
                     return {
                         _id: doc.id,
                         name: doc.name,
                         prof: doc.prof,
                         schoolYear: doc.schoolYear,
-                        seances: doc.seances,
+                        exams: doc.exams,
                         request: {
                             type: 'GET',
                             url: 'http://localhost:4000/profExamCalendars/' + doc._id
@@ -74,13 +74,13 @@ exports.Get_All_ProfExamCalendars = (req, res, next) => {
 exports.Get_Specific_ProfExamCalendar = (req, res, next) => {
     const id = req.params.profExamCalendarId;
     ProfExamCalendar.findById(id)
-        .select('_id name prof schoolYear seances')
+        .select('_id name prof schoolYear exams')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ProfExamCalendare: doc,
+                    ProfExamCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ProfExamCalendar => URL_UNDER',
@@ -154,13 +154,13 @@ exports.Delete_ProfExamCalendar = (req, res, next) => {
 exports.Get_Specific_ProfExamCalendar_By_Prof = (req, res, next) => {
     const id = req.params.profId;
     ProfExamCalendar.findOne({ prof: id })
-        .select('_id name prof schoolYear seances')
+        .select('_id name prof schoolYear exams')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ProfExamCalendare: doc,
+                    ProfExamCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ProfExamCalendar => URL_UNDER',
@@ -182,13 +182,13 @@ exports.Get_Specific_ProfExamCalendar_By_Prof_And_SchoolYear = (req, res, next) 
     const id = req.params.profId;
     const schoolY = req.params.schoolYear;
     ProfExamCalendar.find({ prof: id, schoolYear: schoolY })
-        .select('_id name prof schoolYear seances')
+        .select('_id name prof schoolYear exams')
         .exec()
         .then(doc => {
             console.log('From DataBase:', doc);
             if (doc) {
                 res.status(200).json({
-                    ProfExamCalendare: doc,
+                    ProfExamCalendar: doc,
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_ProfExamCalendar => URL_UNDER',
@@ -203,4 +203,11 @@ exports.Get_Specific_ProfExamCalendar_By_Prof_And_SchoolYear = (req, res, next) 
             console.log(err);
             res.status(500).json({ error: err });
         });
+}
+
+function formatSchoolYearFromBody(schoolyear) {
+    // sy = schoolyear;
+    // sy.replace('-', '/');
+    // console.log(sy);
+    return schoolyear.replace('-', '/');
 }

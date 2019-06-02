@@ -31,7 +31,6 @@ exports.Add_StudentDocument = (req, res, next) => {
                 message: 'studentDocument Created Successfully!',
                 createdStudentDocument: {
                     _id: Document.id,
-                    studentId: Document.studentId,
                     title: Document.title,
                     subtitle: Document.subtitle,
                     categorie: Document.categorie,
@@ -62,7 +61,6 @@ exports.Get_All_StudentDocuments = (req, res, next) => {
                 studentDocuments: docs.map(doc => {
                     return {
                         _id: doc._id,
-                        studentId: doc.studentId,
                         title: doc.title,
                         subtitle: doc.subtitle,
                         categorie: doc.categorie,

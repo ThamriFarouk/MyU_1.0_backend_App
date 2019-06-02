@@ -15,7 +15,7 @@ const examCalendarSchema = mongoose.Schema({
         type: String,
         reuired: true
     },
-    Seances: {
+    exams: {
         type: Object
     }
 
